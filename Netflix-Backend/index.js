@@ -1,6 +1,7 @@
 const express = require("express");
 require("./utilis/connection");
 const cookieParser = require("cookie-parser");
+const cors = require( "cors" );
 const userRoute = require("./routes/userRoute");
 const app = express();
 const port = process.env.PORT || 8000;
@@ -9,7 +10,9 @@ const port = process.env.PORT || 8000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(cors({
+  origin: "http://localhost:3000"
+}));
 //api
 app.use("/api/vi/user", userRoute);
 
