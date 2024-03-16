@@ -6,7 +6,7 @@ const Register = async (req, res) => {
   try {
     const { FullName, Email, Password } = req.body;
     if (!FullName || !Email || !Password) {
-      return res.status(401).json({
+      return res.status(409).json({
         message: "Please provide all required fields",
         success: false,
       });
@@ -14,7 +14,7 @@ const Register = async (req, res) => {
     // Checking if the user already exists in  the database
     const existingUser = await User.findOne({ Email });
     if (existingUser) {
-      return res.status(401).json({
+      return res.status(409).json({
         message: "This email is already registered.",
         success: false,
       });
