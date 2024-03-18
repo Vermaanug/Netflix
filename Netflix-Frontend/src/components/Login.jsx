@@ -1,20 +1,73 @@
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { checkValidData } from "../utils/Validate";
+import { API_END_POINT } from "../utils/constant";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/userSlice";
 
 const Login = () => {
   const [isSignForm, setisSignForm] = useState(true);
-  const [errorMessage , SeterrorMessage] = useState(null);
+  const [errorMessage, SeterrorMessage] = useState(null);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const name = useRef(null);
   const email = useRef(null);
   const password = useRef(null);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
+    const message = checkValidData(email.current.value, password.current.value);
+    SeterrorMessage(message);
+    if (message) return;
 
-    const message = checkValidData(email.current.value , password.current.value )
-    SeterrorMessage(message)
-
+    if (!isSignForm) {
+      //Sign Up Logic
+      const user = {
+        FullName: name.current.value,
+        Email: email.current.value,
+        Password: password.current.value,
+      };
+      try {
+        const res = await axios.post(`${API_END_POINT}/register`, user, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
+        if (res.data.success) {
+          toast.success(res.data.message);
+          name.current.value = "";
+          email.current.value = "";
+          password.current.value = "";
+        }
+      } catch (error) {
+        toast.error(error.response.data.message);
+      }
+    } else {
+      //Sign in Logic
+      const user = {
+        Email: email.current.value,
+        Password: password.current.value,
+      };
+      try {
+        const res = await axios.post(`${API_END_POINT}/login`, user , {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        });
+        if (res.data.success) {
+          toast.success(res.data.message);
+          dispatch(addUser(res.data.user));
+          navigate("/browse");
+        }
+      } catch (error) {
+        toast.error(error.response.data.message);
+      }
+    }
   };
 
   const toggleclickbutton = () => {
