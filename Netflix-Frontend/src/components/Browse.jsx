@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import appStore from "../redux/appStore";
 import { useNavigate } from "react-router-dom";
 import useNowPlayingMovies from "../../hooks/useNowPlayingMovies";
+import MainContainer from "./MainContainer";
+import SecondaryContainer from "./SecondaryContainer";
 
 const Browse = () => {
   const currentUser = useSelector((appStore) => appStore.user.currentUser);
@@ -17,7 +19,13 @@ const Browse = () => {
     }
   }, []);
 
-  return <Header />;
+  return (
+    <div>
+      <Header/>
+      <MainContainer/>
+      <SecondaryContainer/>
+    </div>
+  )
 };
 
 export default Browse;
