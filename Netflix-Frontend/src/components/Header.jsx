@@ -26,7 +26,7 @@ const Header = () => {
   };
 
   return currentUser ? (
-    <div className="w-full m-auto bg-gradient-to-b from-black flex justify-around">
+    <div className="absolute w-full m-auto bg-gradient-to-b from-black flex justify-around z-10">
       <div className="py-2">
         <img
           className="w-36"
@@ -35,7 +35,7 @@ const Header = () => {
         />
       </div>
       <div className="flex justify-between">
-        <h1 className="my-5 text-xl">{currentUser.FullName}</h1>
+        <h1 className="my-5 text-xl text-white">{currentUser.FullName}</h1>
         <button
           className="ml-6 px-2 mt-4 mb-6 bg-red-600 rounded-sm text-white text-sm font-semibold cursor-pointer"
           onClick={handleSignOut}
