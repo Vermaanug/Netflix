@@ -9,7 +9,7 @@ const MainContainer = () => {
   const mainMovies = movies[0];
 
 
-  const { original_title, overview ,id } = mainMovies;
+  const { original_title, overview ,id  } = mainMovies;
 
   return (
     <div>
