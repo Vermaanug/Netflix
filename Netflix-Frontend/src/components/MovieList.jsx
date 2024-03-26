@@ -1,14 +1,18 @@
 import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
-  console.log(movies);
   return (
-    <div className="absolute bg-black">
-      <h1 className="text-3xl font-semibold text-white pl-14 pb-4">{title}</h1>
-      <div className="flex pl-10 overflow-hidden">
-        {movies.map((movie) => {
-          return <MovieCard key={movie.id} posterPath={movie.poster_path} />;
-        })}
+    <div className="pl-6">
+      <h1 className="text-3xl text-white mb-4 pl-2">{title}</h1>
+      <div className=" flex overflow-x-scroll no-scrollbar cursor-pointer p-1">
+        <div className="flex items-center pb-4">
+          {movies &&
+            movies.map((movie) => {
+              return (
+                <MovieCard key={movie.id} posterPath={movie.poster_path} />
+              );
+            })}
+        </div>
       </div>
     </div>
   );
