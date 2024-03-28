@@ -9,12 +9,14 @@ import SecondaryContainer from "./SecondaryContainer";
 import usePopularMovie from "../../hooks/usePopularMovie";
 import useTopRatedMovie from "../../hooks/useTopRatedMovie";
 import useUpcomingMovie from "../../hooks/useUpcomingMovie";
+import SearchMovie from "./SearchMovie";
 
 const Browse = () => {
   const currentUser = useSelector((appStore) => appStore.user.currentUser);
+  const toggle = useSelector((appStore) => appStore.movies.toggle);
   const navigate = useNavigate();
 
-  useNowPlayingMovies();  //  Custom Hooks to fetching data from API and store it in Redux Store
+  useNowPlayingMovies(); //  Custom Hooks to fetching data from API and store it in Redux Store
   usePopularMovie();
   useTopRatedMovie();
   useUpcomingMovie();
@@ -27,11 +29,17 @@ const Browse = () => {
 
   return (
     <div>
-      <Header/>
-      <MainContainer/>
-      <SecondaryContainer/>
+      <Header />
+      {toggle ? (
+        <SearchMovie />
+      ) : (
+        <>
+          <MainContainer />
+          <SecondaryContainer />
+        </>
+      )}
     </div>
-  )
+  );
 };
 
 export default Browse;

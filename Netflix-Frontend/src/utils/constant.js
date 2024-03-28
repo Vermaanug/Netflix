@@ -23,4 +23,6 @@ export const TOP_RATED_MOVIE_API = "https://api.themoviedb.org/3/movie/top_rated
 
 export const UPCOMING_MOVIE_API = "https://api.themoviedb.org/3/movie/upcoming";
 
+export const SEARCH_MOVIE_API = "https://api.themoviedb.org/3/search/movie?query=";
+
 export const POSTER_IMAGE_URL = "https://image.tmdb.org/t/p/original";
