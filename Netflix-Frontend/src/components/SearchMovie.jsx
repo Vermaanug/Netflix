@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSearchMovie } from "../redux/movieSlice";
 import appStore from "../redux/appStore";
 import MovieCard from "./MovieCard";
+import { setIsLoading } from "../redux/userSlice";
 
 const SearchMovie = () => {
   const [Search, setSearch] = useState("");
@@ -22,8 +23,9 @@ const SearchMovie = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    dispatch(setIsLoading(true));
     try {
-      const res = await axios.get(`${SEARCH_MOVIE_API}${Search}`, API_OPTIONS);
+      const res = await axios.get(`${SEARCH_MOVIE_API}${Search}&include_adult=false&language=en-US&page=1`, API_OPTIONS);
       dispatch(setSearchMovie(res.data.results));
     } catch (error) {
       console.log(error);
