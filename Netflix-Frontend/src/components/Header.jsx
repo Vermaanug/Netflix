@@ -39,12 +39,12 @@ const Header = () => {
       <div className="flex justify-between">
         <h1 className="my-5 text-xl text-white">{currentUser.FullName}</h1>
         <button
-          className="ml-6 px-2 mt-4 mb-6 bg-red-600 rounded-sm text-white text-sm font-semibold cursor-pointer"
+          className="ml-6 px-2 mt-4 mb-6 bg-red-600 rounded-sm text-white text-sm font-semibold cursor-pointer hover:bg-red-800"
           onClick={handleSignOut}
         >
           Sign Out
         </button>
-        <button className="ml-3 px-2 mt-4 mb-6 bg-red-600 rounded-sm text-white text-sm font-semibold cursor-pointer"
+        <button className="ml-3 px-2 mt-4 mb-6 bg-red-600 rounded-sm text-white text-sm font-semibold cursor-pointer hover:bg-red-800 "
         onClick={handleSearchMovie}>
           {toggle ? "Home" : "Search Movie"}
         </button>
