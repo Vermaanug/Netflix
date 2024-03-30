@@ -11,7 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "https://mern-vercel-api-omega.vercel.app/",
+  methods: ["GET","POST"],
   credentials:true
 }));
 //api
