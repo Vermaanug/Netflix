@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/Netflix")
+  .connect("mongodb+srv://vermaanug1974:Dj5DLSdCP5Zg2nOb@cluster0.9es6z86.mongodb.net/")
   .then(() => {
     console.log("Connection Successful");
   })
