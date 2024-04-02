@@ -10,10 +10,7 @@ const port = process.env.PORT || 8000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  origin: "https://netflix-beryl-six.vercel.app",
-  credentials:true
-}));
+app.use(cors());
 //api
 app.use("/api/vi/user", userRoute);
 
